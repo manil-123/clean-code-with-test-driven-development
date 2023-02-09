@@ -11,7 +11,7 @@ class LoginUser extends Usecase<LoginModel, LoginParams> {
   LoginUser(this.loginRepository);
 
   @override
-  Future<Either<Failure, LoginModel>?> call(LoginParams params) async {
+  Future<Either<Failure, LoginModel>> call(LoginParams params) async {
     return await loginRepository.login(params.username, params.password);
   }
 }

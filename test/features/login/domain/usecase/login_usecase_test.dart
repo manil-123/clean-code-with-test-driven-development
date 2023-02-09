@@ -4,10 +4,12 @@ import 'package:ecom_clean_code/features/login/domain/repository/login_repositor
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockLoginRepository extends Mock implements LoginRepository {}
+import 'login_usecase_test.mocks.dart';
 
+@GenerateMocks([LoginRepository])
 void main() {
   late LoginUser loginUser;
   late MockLoginRepository mockLoginRepository;

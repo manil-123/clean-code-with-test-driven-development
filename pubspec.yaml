@@ -52,12 +52,18 @@ dependencies:
   shared_preferences: ^2.0.17
   #screen responsiveness
   flutter_screenutil: ^5.6.1
+  
+  json_annotation: ^4.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.3.2
+  mockito: any
+  #bloc test
+  # bloc_test: 8.3.0
+  #code generation
   build_runner: ^2.1.2
+  json_serializable: ^6.3.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
