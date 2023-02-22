@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -13,11 +15,12 @@ class ErrorMessage {
   static const serverFailureMessage = "Server failure";
   static const cacheFailureMessage = "Cache failure";
   static const internetFailureMessage = "No internet connection";
+  static const socketExceptionMessage = "Connection failed";
   static const somethingWentWrongFailureMessage = 'Something went wrong!!';
 }
 
 class ApiEndpoints {
-  static const loginUrl = "/login";
+  static const loginUrl = "auth/login";
 }
 
 class StringConstant {
