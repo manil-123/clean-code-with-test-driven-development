@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ecom_clean_code/core/error/failures.dart';
 import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart';
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart';
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
@@ -21,13 +22,15 @@ void main() {
   const username = "username";
   const password = "password";
 
+  const testLoginModel = LoginModel(token: "token");
+
   test(
     "shold get token from the repository",
     () async {
       // arrange
       when(
         mockLoginRepository.login(username, password),
-      ).thenAnswer(((_) async => Right(LoginModel(token: "token"))));
+      ).thenAnswer(((_) async => Right(testLoginModel)));
 
       //act
       final result =
@@ -39,4 +42,19 @@ void main() {
       verifyNoMoreInteractions(mockLoginRepository);
     },
   );
+
+  test('should return server failure', () async {
+    //arrange
+    when(mockLoginRepository.login(username, password))
+        .thenAnswer((_) async => Left(Failure("")));
+
+    //act
+    final result =
+        await loginUser(LoginParams(username: username, password: password));
+
+    //assert
+    verify(mockLoginRepository.login(username, password));
+    verifyNoMoreInteractions(mockLoginRepository);
+    expect(result, Left(Failure("")));
+  });
 }

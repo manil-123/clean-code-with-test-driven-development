@@ -4,8 +4,7 @@ part 'login_data_model.g.dart';
 
 @JsonSerializable()
 class LoginDataModel extends LoginModel {
-  final String token;
-  LoginDataModel({required this.token}) : super(token: token);
+  const LoginDataModel({token}) : super(token: token);
 
   factory LoginDataModel.fromJson(Map<String, dynamic> json) =>
       _$LoginDataModelFromJson(json);

@@ -2,7 +2,6 @@ import 'package:ecom_clean_code/core/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String route = '/loginScreen';
   const LoginScreen({super.key});
 
   @override

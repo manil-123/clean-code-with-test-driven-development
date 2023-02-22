@@ -1,8 +1,7 @@
-import 'package:ecom_clean_code/features/login/presentation/pages/login_screen.dart';
+import 'package:ecom_clean_code/core/constants/routes.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const String route = '/';
   const SplashScreen({super.key});
 
   @override
@@ -18,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToNextScreen() {
     Future.delayed(const Duration(milliseconds: 2000), () {
-      Navigator.of(context).pushReplacementNamed(LoginScreen.route);
+      Navigator.of(context).pushReplacementNamed(Routes.loginPageRoute);
     });
   }
 
