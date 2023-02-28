@@ -25,3 +25,7 @@ class StringConstant {
   static const loginText = 'Login';
   static const logoutText = 'Log Out';
 }
+
+class SharedPreferencesConstants {
+  static const authToken = "authToken";
+}

@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/core/error/failures.dart';
 import 'package:ecom_clean_code/features/login/data/datasource/login_remote_data_source.dart';
 import 'package:ecom_clean_code/features/login/data/model/login_data_model.dart';
 import 'package:ecom_clean_code/features/login/data/repository/login_repository_impl.dart';
-import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
