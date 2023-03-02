@@ -1,4 +1,5 @@
 import 'package:ecom_clean_code/core/constants/routes.dart';
+import 'package:ecom_clean_code/features/home/presentation/pages/home_screen.dart';
 import 'package:ecom_clean_code/features/login/presentation/pages/login_screen.dart';
 import 'package:ecom_clean_code/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,10 @@ class AppRouter {
       case Routes.loginPageRoute:
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(),
+        );
+      case Routes.homePageRoute:
+        return MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
         );
       default:
         return MaterialPageRoute(

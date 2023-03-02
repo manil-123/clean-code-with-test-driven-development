@@ -1,5 +1,8 @@
 import 'package:ecom_clean_code/core/widgets/custom_text_field.dart';
+import 'package:ecom_clean_code/features/login/presentation/blocs/login_cubit.dart';
+import 'package:ecom_clean_code/features/login/presentation/widgets/login_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -54,10 +57,15 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 12,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Login'),
-              )
+              LoginButton(
+                key: Key('login'),
+                label: 'LOGIN',
+                formKey: _formKey,
+                onPressed: () => context.read<LoginCubit>().login(
+                      _usernameController.text,
+                      _passwordController.text,
+                    ),
+              ),
             ],
           ),
         ),

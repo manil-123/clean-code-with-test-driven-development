@@ -40,7 +40,7 @@ dependencies:
   # Service locator
   get_it: ^7.2.0
   # Bloc for state management
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
   # Value equality
   equatable: ^2.0.5
   # Functional programming thingies
@@ -61,7 +61,7 @@ dev_dependencies:
     sdk: flutter
   mockito: any
   #bloc test
-  # bloc_test: 8.3.0
+  # bloc_test: 9.1.1
   #code generation
   build_runner: ^2.1.2
   json_serializable: ^6.3.2

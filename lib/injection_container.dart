@@ -15,7 +15,7 @@ Future<void> initializeDi() async {
 
   serviceLocator
     ..registerFactory(() => Client())
-    ..registerLazySingleton(() => sharedPreferences)
+    ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
     ..registerLazySingleton<BaseRemoteDataSource>(
         () => BaseRemoteDataSourceImpl(serviceLocator()))
 

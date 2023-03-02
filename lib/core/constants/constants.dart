@@ -18,7 +18,7 @@ class ErrorMessage {
 }
 
 class ApiEndpoints {
-  static const loginUrl = "auth/login";
+  static const loginUrl = "/auth/login";
 }
 
 class StringConstant {
