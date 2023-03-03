@@ -1,4 +1,4 @@
-import 'package:ecom_clean_code/core/constants/constants.dart';
+import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 void showErrorInfo(BuildContext context, String errorMessage) {
@@ -16,7 +16,7 @@ SnackBar _getErrorWidget(String errorMessage) {
       errorMessage,
       style: const TextStyle(color: Colors.white, fontSize: 16),
     ),
-    backgroundColor: AppColors.errorIconColor,
+    backgroundColor: AppColors.secondaryDark,
     behavior: SnackBarBehavior.floating,
     elevation: 0,
     action: SnackBarAction(

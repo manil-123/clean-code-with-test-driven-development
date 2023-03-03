@@ -1,14 +1,16 @@
+import 'package:ecom_clean_code/app/theme/app_colors.dart';
+import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData get lightTheme => ThemeData(
       // primarySwatch: MaterialColor(0XFF598DF2, color),
-      primaryColor: Color(0XFF598DF2),
+      primaryColor: AppColors.primary,
       appBarTheme: AppBarTheme(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Color(0XFF598DF2),
+        backgroundColor: AppColors.primaryDark,
         foregroundColor: Colors.white,
         titleTextStyle: GoogleFonts.poppins(
           fontSize: 20.0.sp,
@@ -17,6 +19,36 @@ ThemeData get lightTheme => ThemeData(
         ),
       ),
       fontFamily: 'Poppins',
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.blueDark,
+          padding: const EdgeInsets.symmetric(horizontal: 34.0, vertical: 16.0),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 34.0, vertical: 16.0),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+        ),
+      ),
       textTheme: TextTheme(
         headline1: GoogleFonts.poppins(
           fontSize: 20.0.sp,
