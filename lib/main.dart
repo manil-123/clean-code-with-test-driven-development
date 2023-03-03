@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: ((context, child) {
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Ecommerce App',
             debugShowCheckedModeBanner: false,
             theme: lightTheme,
             onGenerateRoute: _appRouter.onGenerateRoute,

@@ -18,27 +18,21 @@ class LoginUserRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
 
   @override
   Future<LoginDataModel> loginUser(String username, String password) async {
-    try {
-      final response = await performPostRequest(
-        ApiEndpoints.loginUrl,
-        {
-          "username": username,
-          "password": password,
-        },
-        {
-          'content-type': 'application/json',
-        },
-      );
-      log(response.body);
+    final response = await performPostRequest(
+      ApiEndpoints.loginUrl,
+      {
+        "username": username,
+        "password": password,
+      },
+      {
+        'content-type': 'application/json',
+      },
+    );
 
-      if (response.statusCode == 200) {
-        return LoginDataModel.fromJson(jsonDecode(response.body));
-      } else {
-        throw ServerException(ErrorMessage.socketExceptionMessage);
-      }
-    } catch (e) {
-      log(e.toString());
-      throw ServerException(e.toString());
+    if (response.statusCode == 200) {
+      return LoginDataModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw ServerException(response.body);
     }
   }
 }
