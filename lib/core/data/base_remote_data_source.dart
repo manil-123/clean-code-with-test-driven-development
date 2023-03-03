@@ -1,24 +1,31 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:ecom_clean_code/core/constants/configs.dart';
+import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class BaseRemoteDataSource {
   Future<http.Response> performPostRequest(
       String endpoint, Object? parameter, Map<String, String>? header);
 
-  Future<http.Response> performGetRequest(
-      String endpoint, Map<String, String>? headers);
+  Future<http.Response> performGetRequest(String endpoint);
 }
 
 class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   final _timeoutDuration = const Duration(seconds: 25);
   final http.Client client;
-  BaseRemoteDataSourceImpl(this.client);
+  final SharedPreferences sharedPreferences;
+  BaseRemoteDataSourceImpl(this.client, this.sharedPreferences);
 
   @override
-  Future<http.Response> performGetRequest(
-      String endpoint, Map<String, String>? headers) async {
+  Future<http.Response> performGetRequest(String endpoint) async {
+    final token =
+        sharedPreferences.getString(SharedPreferencesConstants.authToken) ?? '';
+    final headers = {
+      'Authorization': token,
+      'content-type': 'application/json',
+    };
     return await client
         .get(
           Uri.parse(ApiConfig.apiBaseUrl + endpoint),

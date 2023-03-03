@@ -4,17 +4,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
 import 'login_remote_data_source_test.mocks.dart';
 
-@GenerateMocks([Client])
+@GenerateMocks([Client, SharedPreferences])
 void main() {
   late MockClient mockClient;
+  late MockSharedPreferences mockSharedPreferences;
   late LoginUserRemoteDataSourceImpl remoteDataSource;
   setUp(() {
     mockClient = MockClient();
-    remoteDataSource = LoginUserRemoteDataSourceImpl(mockClient);
+    mockSharedPreferences = MockSharedPreferences();
+    remoteDataSource =
+        LoginUserRemoteDataSourceImpl(mockClient, mockSharedPreferences);
   });
 
   const username = "username";

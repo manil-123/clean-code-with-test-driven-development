@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:ecom_clean_code/core/data/base_remote_data_source.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/features/login/data/model/login_data_model.dart';
@@ -12,9 +10,7 @@ abstract class LoginRemoteDataSource extends BaseRemoteDataSource {
 
 class LoginUserRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
     implements LoginRemoteDataSource {
-  LoginUserRemoteDataSourceImpl(
-    super.client,
-  );
+  LoginUserRemoteDataSourceImpl(super.client, super.sharedPreferences);
 
   @override
   Future<LoginDataModel> loginUser(String username, String password) async {

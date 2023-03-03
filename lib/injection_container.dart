@@ -17,14 +17,14 @@ Future<void> initializeDi() async {
     ..registerFactory(() => Client())
     ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
     ..registerLazySingleton<BaseRemoteDataSource>(
-        () => BaseRemoteDataSourceImpl(serviceLocator()))
+        () => BaseRemoteDataSourceImpl(serviceLocator(), serviceLocator()))
 
     //Features
     //-------Login--------
 
     //Data sources
     ..registerLazySingleton<LoginRemoteDataSource>(
-        () => LoginUserRemoteDataSourceImpl(serviceLocator()))
+        () => LoginUserRemoteDataSourceImpl(serviceLocator(), serviceLocator()))
 
     //Repository
     ..registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(

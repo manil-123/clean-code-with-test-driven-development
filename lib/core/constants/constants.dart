@@ -8,6 +8,7 @@ class ErrorMessage {
 
 class ApiEndpoints {
   static const loginUrl = "/auth/login";
+  static const getProductsUrl = "/products";
 }
 
 class StringConstant {

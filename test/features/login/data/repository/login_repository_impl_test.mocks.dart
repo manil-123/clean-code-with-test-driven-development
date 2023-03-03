@@ -105,26 +105,17 @@ class MockLoginRemoteDataSource extends _i1.Mock
         )),
       ) as _i5.Future<_i3.Response>);
   @override
-  _i5.Future<_i3.Response> performGetRequest(
-    String? endpoint,
-    Map<String, String>? headers,
-  ) =>
+  _i5.Future<_i3.Response> performGetRequest(String? endpoint) =>
       (super.noSuchMethod(
         Invocation.method(
           #performGetRequest,
-          [
-            endpoint,
-            headers,
-          ],
+          [endpoint],
         ),
         returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
           this,
           Invocation.method(
             #performGetRequest,
-            [
-              endpoint,
-              headers,
-            ],
+            [endpoint],
           ),
         )),
       ) as _i5.Future<_i3.Response>);
