@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text('Login Screen'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(

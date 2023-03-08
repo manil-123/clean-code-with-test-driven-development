@@ -1,7 +1,5 @@
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
-import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData get lightTheme => ThemeData(
@@ -13,7 +11,7 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: AppColors.primaryDark,
         foregroundColor: Colors.white,
         titleTextStyle: GoogleFonts.poppins(
-          fontSize: 20.0.sp,
+          fontSize: 20.0,
           fontWeight: FontWeight.w700,
           color: Color.fromARGB(255, 252, 252, 252),
         ),
@@ -51,32 +49,32 @@ ThemeData get lightTheme => ThemeData(
       ),
       textTheme: TextTheme(
         headline1: GoogleFonts.poppins(
-          fontSize: 20.0.sp,
+          fontSize: 20.0,
           fontWeight: FontWeight.w700,
           color: const Color(0XFF598DF2),
         ),
         headline2: GoogleFonts.poppins(
-          fontSize: 16.sp,
+          fontSize: 16.0,
           fontWeight: FontWeight.w500,
           color: const Color(0XFF000000),
         ),
         headline3: GoogleFonts.poppins(
-          fontSize: 14.0.sp,
+          fontSize: 14.0,
           fontWeight: FontWeight.w600,
           color: Color.fromARGB(255, 0, 0, 0),
         ),
         headline4: GoogleFonts.poppins(
-          fontSize: 14.0.sp,
+          fontSize: 14.0,
           fontWeight: FontWeight.w500,
           color: Color.fromARGB(255, 0, 0, 0),
         ),
         headline5: GoogleFonts.poppins(
-          fontSize: 12.0.sp,
+          fontSize: 12.0,
           fontWeight: FontWeight.w500,
           color: const Color(0XFF000000),
         ),
         headline6: GoogleFonts.poppins(
-          fontSize: 12.0.sp,
+          fontSize: 12.0,
           fontWeight: FontWeight.w400,
           color: const Color(0XFF000000),
         ),

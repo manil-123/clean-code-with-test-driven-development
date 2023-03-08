@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'product_cubit_state.dart';
 
-class ProductCubitCubit extends Cubit<ProductCubitState> {
+class ProductCubit extends Cubit<ProductState> {
   final GetProducts getProductsUsecase;
-  ProductCubitCubit(this.getProductsUsecase)
+  ProductCubit(this.getProductsUsecase)
       : super(
           ProductInitial(),
         );
