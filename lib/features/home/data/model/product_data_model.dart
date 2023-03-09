@@ -14,12 +14,12 @@ class ProductDataModel extends Product {
 
   factory ProductDataModel.fromJson(Map<String, dynamic> json) {
     return ProductDataModel(
-      id: json['id'],
-      title: json['title'],
-      price: json['price'],
-      description: json['description'],
-      category: json['category'],
-      image: json['image'],
+      id: json['id'] as int,
+      title: json['title'] as String,
+      price: json['price'] as num,
+      description: json['description'] as String,
+      category: json['category'] as String,
+      image: json['image'] as String,
       rating: json['rating'] != null
           ? RatingDataModel.fromJson(json['rating'])
           : null,
@@ -45,7 +45,7 @@ class RatingDataModel extends Rating {
   const RatingDataModel({rate, count}) : super(rate: rate, count: count);
 
   factory RatingDataModel.fromJson(Map<String, dynamic> json) {
-    return RatingDataModel(rate: json['rate'], count: json['count']);
+    return RatingDataModel(rate: json['rate'] as num, count: json['count']);
   }
 
   Map<String, dynamic> toJson() {

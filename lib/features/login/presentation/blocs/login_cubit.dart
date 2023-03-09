@@ -46,4 +46,8 @@ class LoginCubit extends Cubit<LoginState> {
       },
     );
   }
+
+  void logOut() {
+    sharedPreferences.clear();
+  }
 }

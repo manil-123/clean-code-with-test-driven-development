@@ -12,7 +12,7 @@ void main() async {
   await initializeDi();
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (_) => MyApp(),
     ),
   );

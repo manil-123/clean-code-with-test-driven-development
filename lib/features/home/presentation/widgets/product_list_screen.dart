@@ -11,13 +11,13 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(12.0),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          childAspectRatio: 0.5,
+          childAspectRatio: 0.6,
         ),
         itemCount: productsList.length,
         itemBuilder: (context, index) {
@@ -85,7 +85,9 @@ class ProductListScreen extends StatelessWidget {
                       Row(
                         children: [
                           RatingBarIndicator(
-                            rating: item.rating!.rate!,
+                            rating: double.parse(
+                              item.rating!.rate!.toString(),
+                            ),
                             itemCount: 5,
                             itemSize: 20.0,
                             physics: BouncingScrollPhysics(),
