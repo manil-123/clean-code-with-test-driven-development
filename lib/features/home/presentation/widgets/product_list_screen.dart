@@ -17,7 +17,7 @@ class ProductListScreen extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          childAspectRatio: 0.6,
+          childAspectRatio: 3 / 6.3,
         ),
         itemCount: productsList.length,
         itemBuilder: (context, index) {
@@ -61,6 +61,7 @@ class ProductListScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
@@ -82,26 +83,25 @@ class ProductListScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      Row(
-                        children: [
-                          RatingBarIndicator(
-                            rating: double.parse(
-                              item.rating!.rate!.toString(),
-                            ),
-                            itemCount: 5,
-                            itemSize: 20.0,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                          Text('(${item.rating!.count!})'),
-                        ],
-                      )
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      RatingBarIndicator(
+                        rating: double.parse(
+                          item.rating!.rate!.toString(),
+                        ),
+                        itemCount: 5,
+                        itemSize: 20.0,
+                        physics: BouncingScrollPhysics(),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8.0,
+                      ),
+                      Text('(${item.rating!.count!})'),
                     ],
                   ),
                 ),

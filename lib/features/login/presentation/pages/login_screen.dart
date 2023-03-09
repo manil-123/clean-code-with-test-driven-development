@@ -97,14 +97,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: 12,
                     ),
-                    LoginButton(
-                      key: Key('login'),
-                      label: 'LOGIN',
-                      formKey: _formKey,
-                      onPressed: () => context.read<LoginCubit>().login(
-                            _usernameController.text,
-                            _passwordController.text,
-                          ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: LoginButton(
+                        key: Key('login'),
+                        label: 'LOGIN',
+                        formKey: _formKey,
+                        onPressed: () => context.read<LoginCubit>().login(
+                              _usernameController.text,
+                              _passwordController.text,
+                            ),
+                      ),
                     ),
                   ],
                 ),
