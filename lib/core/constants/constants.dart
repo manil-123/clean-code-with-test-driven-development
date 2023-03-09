@@ -12,6 +12,7 @@ class ApiEndpoints {
 }
 
 class StringConstant {
+  static const appName = 'E-commerce App';
   static const loginText = 'Login';
   static const logoutText = 'Log Out';
 }

@@ -17,8 +17,10 @@ class LoginRepositoryImpl implements LoginRepository {
       final loginResponse =
           await loginRemoteDataSource.loginUser(username, password);
       return Right(loginResponse);
-    } on ServerException {
-      return Left(Failure(ErrorMessage.serverFailureMessage));
+    } on ServerException catch (error) {
+      return Left(
+        Failure(error.exceptionMessage),
+      );
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -8,6 +9,9 @@ class CustomTextFormField extends StatelessWidget {
   final bool? readOnly;
   final bool? enabled;
   final bool? obsecure;
+  final IconData? suffixIcon;
+  final Function()? onSufficIconPress;
+
   const CustomTextFormField({
     Key? key,
     this.controller,
@@ -17,6 +21,8 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly,
     this.enabled,
     this.obsecure,
+    this.suffixIcon,
+    this.onSufficIconPress,
   }) : super(key: key);
 
   @override
@@ -31,6 +37,23 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(),
+        suffixIcon: suffixIcon != null
+            ? IconButton(
+                onPressed: onSufficIconPress,
+                icon: Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: Icon(
+                    suffixIcon,
+                    size: 20.0,
+                    color: AppColors.primaryDark,
+                  ),
+                ),
+              )
+            : null,
+        suffixIconConstraints: const BoxConstraints(
+          minWidth: 0, // Set minimum width to zero
+          minHeight: 0, // Set minimum height to zero
+        ),
         labelStyle: TextStyle(
           color: Colors.black.withOpacity(0.85),
           fontSize: 14,
