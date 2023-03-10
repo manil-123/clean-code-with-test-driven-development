@@ -12,7 +12,7 @@ class LoginInitial extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginLoaded extends LoginState {
-  final LoginModel loginModel;
+  final LoginEntity loginModel;
 
   const LoginLoaded({required this.loginModel});
 

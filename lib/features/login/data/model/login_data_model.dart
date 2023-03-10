@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'login_data_model.g.dart';
 
 @JsonSerializable()
-class LoginDataModel extends LoginModel {
+class LoginDataModel extends LoginEntity {
   const LoginDataModel({token}) : super(token: token);
 
   factory LoginDataModel.fromJson(Map<String, dynamic> json) =>

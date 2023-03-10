@@ -1,6 +1,4 @@
-import 'dart:io';
-import 'package:ecom_clean_code/core/constants/constants.dart';
-import 'package:ecom_clean_code/core/error/exceptions.dart';
+import 'package:ecom_clean_code/core/data/error_handler.dart';
 import 'package:ecom_clean_code/features/login/data/datasource/login_remote_data_source.dart';
 import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart';
 import 'package:ecom_clean_code/core/error/failures.dart';
@@ -8,32 +6,18 @@ import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
+  final ErrorHandler errorHandler;
   final LoginRemoteDataSource loginRemoteDataSource;
 
-  LoginRepositoryImpl({required this.loginRemoteDataSource});
+  LoginRepositoryImpl({
+    required this.errorHandler,
+    required this.loginRemoteDataSource,
+  });
   @override
-  Future<Either<Failure, LoginModel>> login(
+  Future<Either<Failure, LoginEntity>> login(
       String username, String password) async {
-    try {
-      final loginResponse =
-          await loginRemoteDataSource.loginUser(username, password);
-      return Right(loginResponse);
-    } on ServerException catch (error) {
-      return Left(
-        Failure(error.exceptionMessage),
-      );
-    } on SocketException {
-      return Left(
-        Failure(ErrorMessage.socketExceptionMessage),
-      );
-    } on UnauthorisedException catch (error) {
-      return Left(
-        Failure(error.exceptionMessage),
-      );
-    } on NotFoundException catch (error) {
-      return Left(
-        Failure(error.exceptionMessage),
-      );
-    }
+    return await errorHandler.handleError<LoginEntity>(
+      loginRemoteDataSource.loginUser(username, password),
+    );
   }
 }

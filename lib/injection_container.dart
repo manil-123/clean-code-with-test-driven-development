@@ -1,4 +1,5 @@
 import 'package:ecom_clean_code/core/data/base_remote_data_source.dart';
+import 'package:ecom_clean_code/core/data/error_handler.dart';
 import 'package:ecom_clean_code/features/home/data/datasource/product_remote_data_source.dart';
 import 'package:ecom_clean_code/features/home/data/repository/product_repository_impl.dart';
 import 'package:ecom_clean_code/features/home/domain/repository/product_repository.dart';
@@ -21,6 +22,9 @@ Future<void> initializeDi() async {
   serviceLocator
     ..registerFactory(() => Client())
     ..registerLazySingleton<SharedPreferences>(() => sharedPreferences)
+    ..registerLazySingleton(
+      () => ErrorHandler(),
+    )
     ..registerLazySingleton<BaseRemoteDataSource>(
       () => BaseRemoteDataSourceImpl(
         serviceLocator(),
@@ -42,6 +46,7 @@ Future<void> initializeDi() async {
     //Repository
     ..registerLazySingleton<LoginRepository>(
       () => LoginRepositoryImpl(
+        errorHandler: serviceLocator(),
         loginRemoteDataSource: serviceLocator(),
       ),
     )

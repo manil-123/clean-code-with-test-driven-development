@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ecom_clean_code/core/data/error_handler.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/core/error/failures.dart';
 import 'package:ecom_clean_code/features/login/data/datasource/login_remote_data_source.dart';
@@ -10,15 +11,19 @@ import 'package:mockito/mockito.dart';
 
 import 'login_repository_impl_test.mocks.dart';
 
-@GenerateMocks([LoginRemoteDataSource])
+@GenerateMocks([LoginRemoteDataSource, ErrorHandler])
 void main() {
   late LoginRepositoryImpl loginRepositoryImpl;
   late MockLoginRemoteDataSource mockLoginRemoteDataSource;
+  late MockErrorHandler mockErrorHandler;
 
   setUp(() {
     mockLoginRemoteDataSource = MockLoginRemoteDataSource();
-    loginRepositoryImpl =
-        LoginRepositoryImpl(loginRemoteDataSource: mockLoginRemoteDataSource);
+    mockErrorHandler = MockErrorHandler();
+    loginRepositoryImpl = LoginRepositoryImpl(
+      loginRemoteDataSource: mockLoginRemoteDataSource,
+      errorHandler: mockErrorHandler,
+    );
   });
 
   const username = "username";

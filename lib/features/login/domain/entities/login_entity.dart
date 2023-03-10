@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
-class LoginModel extends Equatable {
+class LoginEntity extends Equatable {
   final String token;
 
-  const LoginModel({required this.token});
+  const LoginEntity({required this.token});
 
   @override
   List<Object> get props => [token];
