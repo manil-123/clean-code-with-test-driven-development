@@ -4,10 +4,12 @@ class ErrorMessage {
   static const internetFailureMessage = "No internet connection";
   static const socketExceptionMessage = "Connection failed";
   static const somethingWentWrongFailureMessage = 'Something went wrong!!';
+  static const unauthorisedErrorMessage = 'Unauthorised';
+  static const notFoundErrorMessage = '404 Not Found';
 }
 
 class ApiEndpoints {
-  static const loginUrl = "/auth/login";
+  static const loginUrl = "/auth/logi";
   static const getProductsUrl = "/products";
 }
 

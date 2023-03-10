@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/features/login/data/datasource/login_remote_data_source.dart';
@@ -18,6 +19,18 @@ class LoginRepositoryImpl implements LoginRepository {
           await loginRemoteDataSource.loginUser(username, password);
       return Right(loginResponse);
     } on ServerException catch (error) {
+      return Left(
+        Failure(error.exceptionMessage),
+      );
+    } on SocketException {
+      return Left(
+        Failure(ErrorMessage.socketExceptionMessage),
+      );
+    } on UnauthorisedException catch (error) {
+      return Left(
+        Failure(error.exceptionMessage),
+      );
+    } on NotFoundException catch (error) {
       return Left(
         Failure(error.exceptionMessage),
       );

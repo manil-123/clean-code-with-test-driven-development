@@ -50,6 +50,6 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   }
 
   Never onTimeout() {
-    return (throw const SocketException(""));
+    return (throw const SocketException(ErrorMessage.socketExceptionMessage));
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ecom_clean_code/core/data/base_remote_data_source.dart';
+import 'package:ecom_clean_code/core/data/json_decoder.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/features/login/data/model/login_data_model.dart';
 import '../../../../core/constants/constants.dart';
@@ -24,11 +25,7 @@ class LoginUserRemoteDataSourceImpl extends BaseRemoteDataSourceImpl
         'content-type': 'application/json',
       },
     );
-
-    if (response.statusCode == 200) {
-      return LoginDataModel.fromJson(jsonDecode(response.body));
-    } else {
-      throw ServerException(response.body);
-    }
+    final data = jsonDecodeAndHandleException(response);
+    return LoginDataModel.fromJson(data);
   }
 }
