@@ -47,9 +47,6 @@ void main() {
   });
 
   group('login cubit test', () {
-    const username = "username";
-    const password = "password";
-    final user = LoginEntity(token: "test_admin");
     test(
       "initialState should be Empty",
       () {

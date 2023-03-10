@@ -24,7 +24,7 @@ class ErrorHandler {
           error.exceptionMessage.toString(),
         ),
       );
-    } on CacheException catch (error, s) {
+    } on CacheException catch (error) {
       return Left(
         Failure(
           error.exceptionMessage,
