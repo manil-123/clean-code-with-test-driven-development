@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:ecom_clean_code/core/constants/constants.dart';
-import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart';
+import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart';
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

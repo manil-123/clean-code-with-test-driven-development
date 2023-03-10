@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/core/error/failures.dart';
-import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart';
+import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart';
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
 import 'package:ecom_clean_code/features/login/presentation/blocs/login_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -49,7 +49,7 @@ void main() {
   group('login cubit test', () {
     const username = "username";
     const password = "password";
-    final user = LoginModel(token: "test_admin");
+    final user = LoginEntity(token: "test_admin");
     test(
       "initialState should be Empty",
       () {
@@ -62,7 +62,7 @@ void main() {
       const username = 'test_username';
       const password = 'test_password';
 
-      final loginModel = LoginModel(token: 'test_token');
+      final loginModel = LoginEntity(token: 'test_token');
 
       test('emits LoginLoading and LoginLoaded on successful login', () async {
         when(usecase.call(any)).thenAnswer((_) async => Right(loginModel));

@@ -7,7 +7,7 @@ import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:ecom_clean_code/core/error/failures.dart' as _i6;
-import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart'
+import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart'
     as _i7;
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart'
     as _i2;
@@ -65,22 +65,22 @@ class MockLoginUser extends _i1.Mock implements _i4.LoginUser {
         ),
       ) as _i2.LoginRepository);
   @override
-  _i5.Future<_i3.Either<_i6.Failure, _i7.LoginModel>> call(
+  _i5.Future<_i3.Either<_i6.Failure, _i7.LoginEntity>> call(
           _i4.LoginParams? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _i5.Future<_i3.Either<_i6.Failure, _i7.LoginModel>>.value(
-            _FakeEither_1<_i6.Failure, _i7.LoginModel>(
+        returnValue: _i5.Future<_i3.Either<_i6.Failure, _i7.LoginEntity>>.value(
+            _FakeEither_1<_i6.Failure, _i7.LoginEntity>(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         )),
-      ) as _i5.Future<_i3.Either<_i6.Failure, _i7.LoginModel>>);
+      ) as _i5.Future<_i3.Either<_i6.Failure, _i7.LoginEntity>>);
 }
 
 /// A class which mocks [SharedPreferences].

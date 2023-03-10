@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:ecom_clean_code/core/error/failures.dart' as _i5;
-import 'package:ecom_clean_code/features/login/domain/entities/login_model.dart'
+import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart'
     as _i6;
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart'
     as _i3;
@@ -43,7 +43,7 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.LoginModel>> login(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.LoginEntity>> login(
     String? username,
     String? password,
   ) =>
@@ -55,8 +55,8 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
             password,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, _i6.LoginModel>>.value(
-            _FakeEither_0<_i5.Failure, _i6.LoginModel>(
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, _i6.LoginEntity>>.value(
+            _FakeEither_0<_i5.Failure, _i6.LoginEntity>(
           this,
           Invocation.method(
             #login,
@@ -66,5 +66,5 @@ class MockLoginRepository extends _i1.Mock implements _i3.LoginRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.LoginModel>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.LoginEntity>>);
 }

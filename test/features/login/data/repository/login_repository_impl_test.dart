@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/core/data/error_handler.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/core/error/failures.dart';
@@ -38,6 +40,8 @@ void main() {
         //arrange
         when(mockLoginRemoteDataSource.loginUser(username, password))
             .thenAnswer((_) async => testLoginModel);
+        when(mockErrorHandler.handleError<LoginDataModel>(any))
+            .thenAnswer((_) async => Right(testLoginModel));
         //act
         final result = await loginRepositoryImpl.login(username, password);
         //assert
@@ -50,16 +54,19 @@ void main() {
       'should return Failure when an exception thrown',
       () async {
         // arrange
-        when(mockLoginRemoteDataSource.loginUser(any, any))
-            .thenThrow(ServerException('Server Error'));
+        when(mockLoginRemoteDataSource.loginUser(username, password))
+            .thenThrow(ServerException(ErrorMessage.serverFailureMessage));
+        when(mockErrorHandler.handleError<LoginDataModel>(any)).thenAnswer(
+            (_) async => Left(Failure(ErrorMessage.socketExceptionMessage)));
 
         // act
         final result = await loginRepositoryImpl.login(username, password);
 
         // assert
+
         verify(mockLoginRemoteDataSource.loginUser(username, password));
         verifyNoMoreInteractions(mockLoginRemoteDataSource);
-        expect(result, equals(Left(Failure('Server Error'))));
+        expect(result, Left(Failure(ErrorMessage.socketExceptionMessage)));
       },
     );
   });

@@ -3,10 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
+import 'package:dartz/dartz.dart' as _i4;
+import 'package:ecom_clean_code/core/data/error_handler.dart' as _i7;
+import 'package:ecom_clean_code/core/error/failures.dart' as _i8;
 import 'package:ecom_clean_code/features/login/data/datasource/login_remote_data_source.dart'
-    as _i4;
+    as _i5;
 import 'package:ecom_clean_code/features/login/data/model/login_data_model.dart'
     as _i2;
 import 'package:http/http.dart' as _i3;
@@ -44,17 +47,27 @@ class _FakeResponse_1 extends _i1.SmartFake implements _i3.Response {
         );
 }
 
+class _FakeEither_2<L, R> extends _i1.SmartFake implements _i4.Either<L, R> {
+  _FakeEither_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [LoginRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginRemoteDataSource extends _i1.Mock
-    implements _i4.LoginRemoteDataSource {
+    implements _i5.LoginRemoteDataSource {
   MockLoginRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.LoginDataModel> loginUser(
+  _i6.Future<_i2.LoginDataModel> loginUser(
     String? username,
     String? password,
   ) =>
@@ -66,7 +79,7 @@ class MockLoginRemoteDataSource extends _i1.Mock
             password,
           ],
         ),
-        returnValue: _i5.Future<_i2.LoginDataModel>.value(_FakeLoginDataModel_0(
+        returnValue: _i6.Future<_i2.LoginDataModel>.value(_FakeLoginDataModel_0(
           this,
           Invocation.method(
             #loginUser,
@@ -76,9 +89,9 @@ class MockLoginRemoteDataSource extends _i1.Mock
             ],
           ),
         )),
-      ) as _i5.Future<_i2.LoginDataModel>);
+      ) as _i6.Future<_i2.LoginDataModel>);
   @override
-  _i5.Future<_i3.Response> performPostRequest(
+  _i6.Future<_i3.Response> performPostRequest(
     String? endpoint,
     Object? parameter,
     Map<String, String>? header,
@@ -92,7 +105,7 @@ class MockLoginRemoteDataSource extends _i1.Mock
             header,
           ],
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i6.Future<_i3.Response>.value(_FakeResponse_1(
           this,
           Invocation.method(
             #performPostRequest,
@@ -103,20 +116,46 @@ class MockLoginRemoteDataSource extends _i1.Mock
             ],
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i6.Future<_i3.Response>);
   @override
-  _i5.Future<_i3.Response> performGetRequest(String? endpoint) =>
+  _i6.Future<_i3.Response> performGetRequest(String? endpoint) =>
       (super.noSuchMethod(
         Invocation.method(
           #performGetRequest,
           [endpoint],
         ),
-        returnValue: _i5.Future<_i3.Response>.value(_FakeResponse_1(
+        returnValue: _i6.Future<_i3.Response>.value(_FakeResponse_1(
           this,
           Invocation.method(
             #performGetRequest,
             [endpoint],
           ),
         )),
-      ) as _i5.Future<_i3.Response>);
+      ) as _i6.Future<_i3.Response>);
+}
+
+/// A class which mocks [ErrorHandler].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockErrorHandler extends _i1.Mock implements _i7.ErrorHandler {
+  MockErrorHandler() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<_i4.Either<_i8.Failure, T>> handleError<T>(dynamic remoteSource) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #handleError,
+          [remoteSource],
+        ),
+        returnValue: _i6.Future<_i4.Either<_i8.Failure, T>>.value(
+            _FakeEither_2<_i8.Failure, T>(
+          this,
+          Invocation.method(
+            #handleError,
+            [remoteSource],
+          ),
+        )),
+      ) as _i6.Future<_i4.Either<_i8.Failure, T>>);
 }
