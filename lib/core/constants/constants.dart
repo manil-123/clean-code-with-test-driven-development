@@ -11,6 +11,7 @@ class ErrorMessage {
 class ApiEndpoints {
   static const loginUrl = "/auth/login";
   static const getProductsUrl = "/products";
+  static const categoriesUrl = "/products/categories";
 }
 
 class StringConstant {
