@@ -8,12 +8,15 @@ class CategoryResponse {
   factory CategoryResponse.fromList(List<dynamic> data) {
     var categoriesList = <CategoryDataModel>[];
     for (var category in data) {
-      categoriesList.add(category);
+      categoriesList.add(
+        CategoryDataModel(categoryName: category as String),
+      );
     }
-    return CategoryResponse.fromList(categoriesList);
+    return CategoryResponse(categoriesList);
   }
 }
 
 class CategoryDataModel extends Category {
-  const CategoryDataModel({required super.categoryName});
+  const CategoryDataModel({required String categoryName})
+      : super(categoryName: categoryName);
 }

@@ -19,7 +19,7 @@ ThemeData get lightTheme => ThemeData(
       fontFamily: 'Poppins',
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.blueDark,
+          backgroundColor: AppColors.primaryDark,
           padding: const EdgeInsets.symmetric(horizontal: 34.0, vertical: 16.0),
           textStyle: const TextStyle(
             fontSize: 16,

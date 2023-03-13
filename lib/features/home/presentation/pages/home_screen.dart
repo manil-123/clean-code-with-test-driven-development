@@ -1,3 +1,4 @@
+import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/core/constants/routes.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
 import 'package:ecom_clean_code/features/home/presentation/widgets/product_list_screen.dart';
@@ -39,15 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: ((context, state) {
           if (state is ProductLoading) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                backgroundColor: AppColors.primaryDark,
+                color: AppColors.primary,
+              ),
             );
           } else if (state is ProductFailed) {
             return Center(
               child: Text(state.errorMessage),
             );
           } else if (state is ProductLoaded) {
-            return ProductListScreen(
-              productsList: state.productsList,
+            return RefreshIndicator(
+              onRefresh: () async {
+                BlocProvider.of<ProductCubit>(context).fetchProductsList();
+              },
+              child: ProductListScreen(
+                productsList: state.productsList,
+              ),
             );
           }
           return Container();
