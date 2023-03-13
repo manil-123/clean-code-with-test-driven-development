@@ -5,6 +5,7 @@ import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_c
 import 'package:ecom_clean_code/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/categories/presentation/cubit/category_cubit.dart';
 import 'features/login/presentation/blocs/login_cubit.dart';
 
 void main() async {
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => serviceLocator<ProductCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => serviceLocator<CategoryCubit>(),
         ),
       ],
       child: MaterialApp(

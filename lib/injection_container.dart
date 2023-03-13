@@ -1,5 +1,10 @@
 import 'package:ecom_clean_code/core/data/base_remote_data_source.dart';
 import 'package:ecom_clean_code/core/data/error_handler.dart';
+import 'package:ecom_clean_code/features/categories/data/datasource/category_remote_data_source.dart';
+import 'package:ecom_clean_code/features/categories/data/repository/category_repository_impl.dart';
+import 'package:ecom_clean_code/features/categories/domain/repository/category_repository.dart';
+import 'package:ecom_clean_code/features/categories/domain/usecase/get_categories.dart';
+import 'package:ecom_clean_code/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:ecom_clean_code/features/home/data/datasource/product_remote_data_source.dart';
 import 'package:ecom_clean_code/features/home/data/repository/product_repository_impl.dart';
 import 'package:ecom_clean_code/features/home/domain/repository/product_repository.dart';
@@ -93,6 +98,38 @@ Future<void> initializeDi() async {
     //Bloc
     ..registerFactory(
       () => ProductCubit(
+        serviceLocator(),
+      ),
+    )
+
+    //-------Get product categories--------
+
+    //Data sources
+    ..registerLazySingleton(
+      () => CategoryRemoteDataSource(
+        serviceLocator(),
+        serviceLocator(),
+      ),
+    )
+
+    //Repository
+    ..registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(
+        serviceLocator(),
+        serviceLocator(),
+      ),
+    )
+
+    //Usecases
+    ..registerLazySingleton(
+      () => GetCategories(
+        serviceLocator(),
+      ),
+    )
+
+    //Bloc
+    ..registerFactory(
+      () => CategoryCubit(
         serviceLocator(),
       ),
     );

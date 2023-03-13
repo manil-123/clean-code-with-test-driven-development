@@ -1,4 +1,5 @@
 //  T denotes return type of the remote source
+import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
@@ -38,7 +39,8 @@ class ErrorHandler {
       return Left(
         Failure(error.exceptionMessage),
       );
-    } catch (error) {
+    } catch (error, stackTrace) {
+      log(stackTrace.toString());
       return const Left(
         Failure(
           ErrorMessage.somethingWentWrongFailureMessage,
