@@ -5,6 +5,7 @@ import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/features/categories/domain/entity/category.dart';
 import 'package:ecom_clean_code/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,21 @@ class _ProductListScreenState extends State<ProductListScreen> {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                onPressed: () => _showBottomModelSheet(context),
+                onPressed: () {
+                  _showBottomModelSheet(context).then(
+                    (value) {
+                      //if you do not want to hold the selected category, clears the category
+                      BlocProvider.of<CategoryCubit>(context)
+                          .updateSelectedCategory(
+                        Category(categoryName: ''),
+                      );
+                      if (value) {
+                        BlocProvider.of<ProductCubit>(context)
+                            .fetchProductsList();
+                      }
+                    },
+                  );
+                },
                 icon: Icon(
                   Icons.filter_list,
                   size: 30,
@@ -137,8 +152,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 
-  void _showBottomModelSheet(BuildContext context) {
-    showModalBottomSheet(
+  Future<bool> _showBottomModelSheet(BuildContext context) async {
+    bool _isCheckboxSelected = false;
+    await showModalBottomSheet(
       context: context,
       isDismissible: true,
       backgroundColor: Colors.transparent,
@@ -184,8 +200,17 @@ class _ProductListScreenState extends State<ProductListScreen> {
                               Checkbox(
                                   value: category == state.selectedCategory,
                                   onChanged: (newValue) {
-                                    BlocProvider.of<CategoryCubit>(context)
-                                        .updateSelectedCategory(category);
+                                    if (newValue!) {
+                                      _isCheckboxSelected = true;
+                                      BlocProvider.of<CategoryCubit>(context)
+                                          .updateSelectedCategory(category);
+                                    } else {
+                                      _isCheckboxSelected = false;
+                                      BlocProvider.of<CategoryCubit>(context)
+                                          .updateSelectedCategory(
+                                        Category(categoryName: ''),
+                                      );
+                                    }
                                   }),
                               Text(category.categoryName),
                             ],
@@ -211,7 +236,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: _isCheckboxSelected ? () {} : null,
                         child: Text('Filter'),
                       ),
                     ),
@@ -223,5 +248,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
         );
       },
     );
+    return _isCheckboxSelected;
   }
 }

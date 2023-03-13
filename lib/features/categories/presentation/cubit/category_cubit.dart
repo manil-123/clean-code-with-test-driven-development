@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ecom_clean_code/core/usecases/usecase.dart';
 import 'package:ecom_clean_code/features/categories/domain/usecase/get_categories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,9 +33,7 @@ class CategoryCubit extends Cubit<CategoryState> {
   }
 
   void updateSelectedCategory(Category newCategory) {
-    log(newCategory.toString());
     final state = this.state;
-    log(state.toString());
     if (state is! CategoryLoaded) return;
     emit(
       state.copyWith(state.categoriesList, newCategory),
