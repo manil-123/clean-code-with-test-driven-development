@@ -1,4 +1,3 @@
-import 'package:ecom_clean_code/core/usecases/usecase.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
 import 'package:ecom_clean_code/features/home/domain/usecase/get_products.dart';
 import 'package:equatable/equatable.dart';

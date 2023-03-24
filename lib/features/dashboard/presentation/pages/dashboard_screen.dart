@@ -1,5 +1,6 @@
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/features/home/presentation/pages/home_screen.dart';
+import 'package:ecom_clean_code/features/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   final _screensList = const [
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,9 @@ class _DashboardScreenState extends State<DashboardScreen>
             BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(4.0),
-                  child: Icon(Icons.group),
+                  child: Icon(Icons.person),
                 ),
-                label: 'Users'),
+                label: 'Profile'),
           ],
         ),
       ),

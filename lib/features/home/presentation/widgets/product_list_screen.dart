@@ -41,7 +41,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       //if you do not want to hold the selected category, clears the category
                       final filteredCategory =
                           context.read<CategoryCubit>().getSelectedCategory();
-                      log("filtered category " + filteredCategory);
                       BlocProvider.of<CategoryCubit>(context)
                           .updateSelectedCategory(
                         Category(categoryName: ''),

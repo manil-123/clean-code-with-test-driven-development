@@ -1,4 +1,5 @@
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
+import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/core/constants/routes.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
 import 'package:ecom_clean_code/features/home/presentation/widgets/product_list_screen.dart';
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: Text(StringConstant.appName),
         actions: [
           IconButton(
             onPressed: () {
