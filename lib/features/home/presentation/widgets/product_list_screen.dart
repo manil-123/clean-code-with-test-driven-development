@@ -39,6 +39,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   _showBottomModelSheet(context).then(
                     (value) {
                       //if you do not want to hold the selected category, clears the category
+                      final filteredCategory =
+                          context.read<CategoryCubit>().getSelectedCategory();
+                      log("filtered category " + filteredCategory);
                       BlocProvider.of<CategoryCubit>(context)
                           .updateSelectedCategory(
                         Category(categoryName: ''),
@@ -84,6 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       Container(
                         height: 200,
                         width: double.infinity,
+                        padding: EdgeInsets.all(6.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
                         ),
@@ -153,10 +157,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   Future<bool> _showBottomModelSheet(BuildContext context) async {
-    bool _isCheckboxSelected = false;
+    bool isCheckboxSelected = false;
     await showModalBottomSheet(
       context: context,
-      isDismissible: true,
+      isDismissible: false,
       backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -182,11 +186,26 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   const SizedBox(
                     height: 8.0,
                   ),
-                  Center(
-                    child: Text(
-                      'Filter Categories',
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Filter Categories',
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          isCheckboxSelected = false;
+                          Navigator.of(context).pop();
+                        },
+                        icon: Icon(Icons.cancel),
+                      ),
+                    ],
                   ),
                   Expanded(
                     child: Padding(
@@ -201,11 +220,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                   value: category == state.selectedCategory,
                                   onChanged: (newValue) {
                                     if (newValue!) {
-                                      _isCheckboxSelected = true;
+                                      isCheckboxSelected = true;
                                       BlocProvider.of<CategoryCubit>(context)
                                           .updateSelectedCategory(category);
                                     } else {
-                                      _isCheckboxSelected = false;
+                                      isCheckboxSelected = false;
                                       BlocProvider.of<CategoryCubit>(context)
                                           .updateSelectedCategory(
                                         Category(categoryName: ''),
@@ -227,7 +246,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
                             const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 40.0),
+                                vertical: 12.0, horizontal: 40.0),
                           ),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -236,7 +255,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
                             ),
                           ),
                         ),
-                        onPressed: _isCheckboxSelected ? () {} : null,
+                        onPressed: isCheckboxSelected
+                            ? () {
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text('Filter'),
                       ),
                     ),
@@ -248,6 +271,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
         );
       },
     );
-    return _isCheckboxSelected;
+    return isCheckboxSelected;
   }
 }

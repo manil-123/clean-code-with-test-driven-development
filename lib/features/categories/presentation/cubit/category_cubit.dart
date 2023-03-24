@@ -26,7 +26,10 @@ class CategoryCubit extends Cubit<CategoryState> {
       },
       (categoriesList) {
         emit(
-          CategoryLoaded(categoriesList, Category(categoryName: '')),
+          CategoryLoaded(
+            categoriesList,
+            Category(categoryName: ''),
+          ),
         );
       },
     );
@@ -38,5 +41,11 @@ class CategoryCubit extends Cubit<CategoryState> {
     emit(
       state.copyWith(state.categoriesList, newCategory),
     );
+  }
+
+  String getSelectedCategory() {
+    final state = this.state;
+    if (state is! CategoryLoaded) return '';
+    return state.selectedCategory.categoryName;
   }
 }
