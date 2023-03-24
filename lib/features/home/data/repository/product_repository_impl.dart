@@ -13,9 +13,9 @@ class ProductRepositoryImpl implements ProductRepository {
 
   ProductRepositoryImpl(this.remoteDataSource);
   @override
-  Future<Either<Failure, List<Product>>> fetchProducts() async {
+  Future<Either<Failure, List<Product>>> fetchProducts(String category) async {
     try {
-      final productsResponse = await remoteDataSource.getProducts();
+      final productsResponse = await remoteDataSource.getProducts(category);
       return Right(productsResponse);
     } on ServerException {
       return Left(Failure(ErrorMessage.serverFailureMessage));

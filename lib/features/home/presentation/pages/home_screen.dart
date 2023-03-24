@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductCubit>(context).fetchProductsList();
+    BlocProvider.of<ProductCubit>(context).fetchProductsList('');
   }
 
   @override
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (state is ProductLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                BlocProvider.of<ProductCubit>(context).fetchProductsList();
+                BlocProvider.of<ProductCubit>(context).fetchProductsList('');
               },
               child: ProductListScreen(
                 productsList: state.productsList,

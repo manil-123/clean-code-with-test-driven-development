@@ -87,7 +87,7 @@ void main() {
         //arrange
         setUpHttpSuccess200();
         //act
-        await remoteDataSource.getProducts();
+        await remoteDataSource.getProducts('');
         //assert
         verify(mockClient.get(
           any,
@@ -106,7 +106,7 @@ void main() {
         //arrange
         setUpHttpFailure404();
         //act
-        final result = remoteDataSource.getProducts();
+        final result = remoteDataSource.getProducts('');
         //assert
         expect(() => result, throwsException);
       },

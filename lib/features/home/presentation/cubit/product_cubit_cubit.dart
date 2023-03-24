@@ -13,10 +13,12 @@ class ProductCubit extends Cubit<ProductState> {
           ProductInitial(),
         );
 
-  void fetchProductsList() async {
+  void fetchProductsList(String category) async {
     emit(ProductLoading());
 
-    final response = await getProductsUsecase.call(NoParams());
+    final response = await getProductsUsecase.call(
+      GetProductsParams(category: category),
+    );
     response.fold(
       (failure) {
         emit(

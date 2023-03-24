@@ -40,15 +40,15 @@ void main() {
       () async {
         // arrange
         when(
-          mockProductRepository.fetchProducts(),
+          mockProductRepository.fetchProducts(''),
         ).thenAnswer(((_) async => Right(productsList)));
 
         //act
-        final result = await usecase(NoParams());
+        final result = await usecase(GetProductsParams(category: ''));
 
         //assert
         expect(result, Right(productsList));
-        verify(mockProductRepository.fetchProducts()).called(1);
+        verify(mockProductRepository.fetchProducts('')).called(1);
         verifyNoMoreInteractions(mockProductRepository);
       },
     );
@@ -57,14 +57,14 @@ void main() {
       'should return server failure',
       () async {
         //arrange
-        when(mockProductRepository.fetchProducts())
+        when(mockProductRepository.fetchProducts(''))
             .thenAnswer((_) async => Left(Failure("")));
 
         //act
-        final result = await usecase(NoParams());
+        final result = await usecase(GetProductsParams(category: ''));
 
         //assert
-        verify(mockProductRepository.fetchProducts());
+        verify(mockProductRepository.fetchProducts(''));
         verifyNoMoreInteractions(mockProductRepository);
         expect(result, Left(Failure("")));
       },

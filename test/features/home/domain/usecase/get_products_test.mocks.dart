@@ -43,11 +43,12 @@ class MockProductRepository extends _i1.Mock implements _i3.ProductRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> fetchProducts() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> fetchProducts(
+          String? category) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchProducts,
-          [],
+          [category],
         ),
         returnValue:
             _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
@@ -55,7 +56,7 @@ class MockProductRepository extends _i1.Mock implements _i3.ProductRepository {
           this,
           Invocation.method(
             #fetchProducts,
-            [],
+            [category],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);

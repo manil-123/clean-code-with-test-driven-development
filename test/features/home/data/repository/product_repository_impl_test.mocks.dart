@@ -81,10 +81,11 @@ class MockProductsRemoteDataSource extends _i1.Mock
         ),
       ) as _i3.SharedPreferences);
   @override
-  _i5.Future<List<_i6.ProductDataModel>> getProducts() => (super.noSuchMethod(
+  _i5.Future<List<_i6.ProductDataModel>> getProducts(String? category) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getProducts,
-          [],
+          [category],
         ),
         returnValue: _i5.Future<List<_i6.ProductDataModel>>.value(
             <_i6.ProductDataModel>[]),

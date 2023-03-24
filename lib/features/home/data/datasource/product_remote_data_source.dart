@@ -8,8 +8,12 @@ import 'package:ecom_clean_code/features/home/data/model/product_data_model.dart
 class ProductsRemoteDataSource extends BaseRemoteDataSourceImpl {
   ProductsRemoteDataSource(super.client, super.sharedPreferences);
 
-  Future<List<ProductDataModel>> getProducts() async {
-    final response = await performGetRequest(ApiEndpoints.getProductsUrl);
+  Future<List<ProductDataModel>> getProducts(String category) async {
+    final response = await performGetRequest(
+      category.isEmpty
+          ? ApiEndpoints.getProductsUrl
+          : ApiEndpoints.getProductsUrl + category,
+    );
     if (response.statusCode == 200) {
       final responseList = jsonDecode(response.body) as List<dynamic>;
       var productsList = <ProductDataModel>[];

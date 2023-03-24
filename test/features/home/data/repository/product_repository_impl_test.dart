@@ -42,14 +42,14 @@ void main() {
       "should return products list when the call to remote data source is successful",
       () async {
         //arrange
-        when(mockProductsRemoteDataSource.getProducts())
+        when(mockProductsRemoteDataSource.getProducts(''))
             .thenAnswer((_) async => productsList);
 
         //act
-        final result = await repositoryImpl.fetchProducts();
+        final result = await repositoryImpl.fetchProducts('');
 
         //assert
-        verify(mockProductsRemoteDataSource.getProducts());
+        verify(mockProductsRemoteDataSource.getProducts(''));
         expect(result, Right(productsList));
       },
     );
@@ -58,14 +58,14 @@ void main() {
         'should return a ServerFailure when the call to remote data source is unsuccessful',
         () async {
       // arrange
-      when(mockProductsRemoteDataSource.getProducts())
+      when(mockProductsRemoteDataSource.getProducts(''))
           .thenThrow(ServerException(ErrorMessage.serverFailureMessage));
 
       // act
-      final result = await repositoryImpl.fetchProducts();
+      final result = await repositoryImpl.fetchProducts('');
 
       // assert
-      verify(mockProductsRemoteDataSource.getProducts());
+      verify(mockProductsRemoteDataSource.getProducts(''));
 
       expect(result, Left(Failure(ErrorMessage.serverFailureMessage)));
     });
@@ -73,16 +73,16 @@ void main() {
     test('should return a SocketFailure when there is no internet connection',
         () async {
       // arrange
-      when(mockProductsRemoteDataSource.getProducts())
+      when(mockProductsRemoteDataSource.getProducts(''))
           .thenThrow(SocketException('No internet connection'));
 
       // act
-      final result = await repositoryImpl.fetchProducts();
+      final result = await repositoryImpl.fetchProducts('');
 
       // assert
       expect(
           result, equals(Left(Failure(ErrorMessage.socketExceptionMessage))));
-      verify(mockProductsRemoteDataSource.getProducts());
+      verify(mockProductsRemoteDataSource.getProducts(''));
     });
   });
 }

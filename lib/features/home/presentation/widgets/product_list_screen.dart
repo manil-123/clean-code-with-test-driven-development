@@ -48,7 +48,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       );
                       if (value) {
                         BlocProvider.of<ProductCubit>(context)
-                            .fetchProductsList();
+                            .fetchProductsList(filteredCategory.isEmpty
+                                ? ''
+                                : '/category/$filteredCategory');
                       }
                     },
                   );
