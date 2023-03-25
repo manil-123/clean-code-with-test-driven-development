@@ -2,7 +2,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:ecom_clean_code/app/router/app_router.dart';
 import 'package:ecom_clean_code/app/theme/theme_data.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
-import 'package:ecom_clean_code/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/categories/presentation/cubit/category_cubit.dart';
@@ -12,7 +11,6 @@ import 'injection.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureInjection();
-  await initializeDi();
   runApp(
     DevicePreview(
       enabled: true,
@@ -30,13 +28,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => serviceLocator<LoginCubit>(),
+          create: (context) => getIt<LoginCubit>(),
         ),
         BlocProvider(
-          create: (context) => serviceLocator<ProductCubit>(),
+          create: (context) => getIt<ProductCubit>(),
         ),
         BlocProvider(
-          create: (context) => serviceLocator<CategoryCubit>(),
+          create: (context) => getIt<CategoryCubit>(),
         ),
       ],
       child: MaterialApp(

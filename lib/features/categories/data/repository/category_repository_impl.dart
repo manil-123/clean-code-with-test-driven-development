@@ -4,7 +4,9 @@ import 'package:ecom_clean_code/features/categories/domain/entity/category.dart'
 import 'package:ecom_clean_code/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/features/categories/domain/repository/category_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: CategoryRepository)
 class CategoryRepositoryImpl implements CategoryRepository {
   final ErrorHandler errorHandler;
   final CategoryRemoteDataSource remoteDataSource;

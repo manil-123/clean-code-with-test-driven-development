@@ -3,9 +3,11 @@ import 'package:ecom_clean_code/features/categories/domain/usecase/get_categorie
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecom_clean_code/features/categories/domain/entity/category.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'category_state.dart';
 
+@injectable
 class CategoryCubit extends Cubit<CategoryState> {
   final GetCategories usecase;
   CategoryCubit(this.usecase)

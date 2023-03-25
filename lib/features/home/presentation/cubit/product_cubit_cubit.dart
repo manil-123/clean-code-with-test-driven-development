@@ -2,9 +2,11 @@ import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dar
 import 'package:ecom_clean_code/features/home/domain/usecase/get_products.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'product_cubit_state.dart';
 
+@injectable
 class ProductCubit extends Cubit<ProductState> {
   final GetProducts getProductsUsecase;
   ProductCubit(this.getProductsUsecase)

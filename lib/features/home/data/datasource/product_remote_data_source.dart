@@ -4,7 +4,9 @@ import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/core/data/base_remote_data_source.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/features/home/data/model/product_data_model.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton()
 class ProductsRemoteDataSource extends BaseRemoteDataSourceImpl {
   ProductsRemoteDataSource(super.client, super.sharedPreferences);
 
