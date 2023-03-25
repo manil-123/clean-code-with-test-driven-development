@@ -18,6 +18,8 @@ class StringConstant {
   static const appName = 'E-commerce App';
   static const loginText = 'Login';
   static const logoutText = 'Log Out';
+  static const editProfileText = 'Edit Profile';
+  static const changePasswordText = 'Edit Profile';
 }
 
 class SharedPreferencesConstants {

@@ -30,7 +30,7 @@ SnackBar _getErrorWidget(String errorMessage) {
 
 SnackBar _getMessageWidget(String message) {
   return SnackBar(
-    duration: const Duration(seconds: 60),
+    duration: const Duration(seconds: 3),
     content: Text(
       message,
       style: const TextStyle(color: Colors.white, fontSize: 16),

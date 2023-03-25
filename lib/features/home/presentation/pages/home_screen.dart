@@ -1,9 +1,7 @@
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
-import 'package:ecom_clean_code/core/constants/routes.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
 import 'package:ecom_clean_code/features/home/presentation/widgets/product_list_screen.dart';
-import 'package:ecom_clean_code/features/login/presentation/blocs/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,16 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(StringConstant.appName),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.read<LoginCubit>().logOut();
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  Routes.loginPageRoute, (route) => false);
-            },
-            icon: Icon(Icons.logout),
-          )
-        ],
       ),
       body: BlocBuilder<ProductCubit, ProductState>(
         builder: ((context, state) {

@@ -23,7 +23,7 @@ class LoginButton extends StatelessWidget {
       listener: ((context, state) {
         if (state is LoginLoaded) {
           Navigator.pushNamedAndRemoveUntil(
-              context, Routes.homePageRoute, (route) => false);
+              context, Routes.dashboardPageRoute, (route) => false);
           message_widget.showInfo(context, "Login successful");
         } else if (state is LoginFailed) {
           message_widget.showErrorInfo(context, state.errorMessage);
