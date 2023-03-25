@@ -4,7 +4,9 @@ import 'package:ecom_clean_code/core/usecases/usecase.dart';
 import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart';
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton()
 class LoginUser extends Usecase<LoginEntity, LoginParams> {
   final LoginRepository loginRepository;
 

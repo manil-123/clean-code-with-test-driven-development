@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
+import 'package:injectable/injectable.dart';
 import '../constants/constants.dart';
 import '../error/failures.dart';
 
+@LazySingleton()
 class ErrorHandler {
   Future<Either<Failure, T>> handleError<T>(
     dynamic remoteSource,

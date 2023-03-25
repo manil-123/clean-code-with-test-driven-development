@@ -3,9 +3,11 @@ import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'login_state.dart';
 
+@injectable
 class LoginCubit extends Cubit<LoginState> {
   final LoginUser loginUser;
   final SharedPreferences sharedPreferences;

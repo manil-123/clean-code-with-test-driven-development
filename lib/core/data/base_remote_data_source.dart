@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecom_clean_code/core/constants/configs.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class BaseRemoteDataSource {
@@ -12,6 +13,7 @@ abstract class BaseRemoteDataSource {
   Future<http.Response> performGetRequest(String endpoint);
 }
 
+@LazySingleton(as: BaseRemoteDataSource)
 class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
   final _timeoutDuration = const Duration(seconds: 25);
   final http.Client client;

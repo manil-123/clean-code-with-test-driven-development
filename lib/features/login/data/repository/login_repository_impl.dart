@@ -5,7 +5,9 @@ import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart
 import 'package:ecom_clean_code/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/features/login/domain/repository/login_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
   final ErrorHandler errorHandler;
   final LoginRemoteDataSource loginRemoteDataSource;

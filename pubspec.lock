@@ -364,6 +364,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  injectable:
+    dependency: "direct main"
+    description:
+      name: injectable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  injectable_generator:
+    dependency: "direct dev"
+    description:
+      name: injectable_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.4"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -581,6 +595,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   rxdart:
     dependency: transitive
     description:
@@ -656,6 +677,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smartstruct:
+    dependency: "direct main"
+    description:
+      name: smartstruct
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
+  smartstruct_generator:
+    dependency: "direct dev"
+    description:
+      name: smartstruct_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   source_gen:
     dependency: transitive
     description:

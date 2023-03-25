@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/categories/presentation/cubit/category_cubit.dart';
 import 'features/login/presentation/blocs/login_cubit.dart';
+import 'injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureInjection();
   await initializeDi();
   runApp(
     DevicePreview(
