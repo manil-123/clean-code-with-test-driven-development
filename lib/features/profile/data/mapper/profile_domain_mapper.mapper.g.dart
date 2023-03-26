@@ -5,7 +5,7 @@ part of 'profile_domain_mapper.dart';
 // **************************************************************************
 // MapperGenerator
 // **************************************************************************
-@LazySingleton(as: ProfileDomainMapper)
+
 class ProfileDomainMapperImpl extends ProfileDomainMapper {
   ProfileDomainMapperImpl() : super();
 

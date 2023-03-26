@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 
 part 'category_state.dart';
 
-@injectable
+// @injectable
 class CategoryCubit extends Cubit<CategoryState> {
   final GetCategories usecase;
   CategoryCubit(this.usecase)

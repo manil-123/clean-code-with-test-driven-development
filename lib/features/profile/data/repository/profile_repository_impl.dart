@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/features/profile/domain/repository/profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
-@LazySingleton(as: ProfileRepository)
+// @LazySingleton(as: ProfileRepository)
 class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Either<Failure, ProfileEntity>> fetchProfile() {

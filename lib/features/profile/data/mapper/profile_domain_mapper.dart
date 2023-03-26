@@ -6,7 +6,7 @@ import 'package:smartstruct/smartstruct.dart';
 part 'profile_domain_mapper.mapper.g.dart';
 
 @Mapper()
-@injectable
+// @injectable
 abstract class ProfileDomainMapper {
   @factoryMethod
   ProfileEntity fromProfileModel(ProfileDataModel model);

@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 part 'product_cubit_state.dart';
 
-@injectable
+// @Singleton()
 class ProductCubit extends Cubit<ProductState> {
   final GetProducts getProductsUsecase;
   ProductCubit(this.getProductsUsecase)
