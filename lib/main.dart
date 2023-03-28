@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<LoginCubit>(),
         ),
-        // BlocProvider(
-        //   create: (context) => getIt<ProductCubit>(),
-        // ),
-        // BlocProvider(
-        //   create: (context) => getIt<CategoryCubit>(),
-        // ),
+        BlocProvider(
+          create: (context) => getIt<ProductCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<CategoryCubit>(),
+        ),
       ],
       child: MaterialApp(
         useInheritedMediaQuery: true,

@@ -6,7 +6,7 @@ import 'package:ecom_clean_code/features/home/domain/repository/product_reposito
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
-// @LazySingleton()
+@LazySingleton()
 class GetProducts extends Usecase<List<Product>, GetProductsParams> {
   final ProductRepository productRepository;
 

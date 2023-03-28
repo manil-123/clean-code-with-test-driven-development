@@ -55,3 +55,14 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
     return (throw const SocketException(ErrorMessage.socketExceptionMessage));
   }
 }
+
+@module
+abstract class RegisterModule {
+  @lazySingleton
+  http.Client get httpClient => http.Client();
+
+  @LazySingleton()
+  @preResolve
+  Future<SharedPreferences> get sharedPreferences =>
+      SharedPreferences.getInstance();
+}

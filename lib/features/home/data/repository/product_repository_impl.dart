@@ -9,7 +9,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecom_clean_code/features/home/domain/repository/product_repository.dart';
 import 'package:injectable/injectable.dart';
 
-// @LazySingleton(as: ProductRepository)
+@LazySingleton(as: ProductRepository)
 class ProductRepositoryImpl implements ProductRepository {
   final ProductsRemoteDataSource remoteDataSource;
 

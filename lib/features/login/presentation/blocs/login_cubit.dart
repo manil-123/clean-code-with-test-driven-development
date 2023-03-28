@@ -13,6 +13,7 @@ class LoginCubit extends Cubit<LoginState> {
   final SharedPreferences sharedPreferences;
   LoginCubit(this.loginUser, this.sharedPreferences) : super(LoginInitial());
 
+  // @PostConstruct(preResolve: true)
   Future<bool> isLoggedIn() async {
     final authToken =
         sharedPreferences.getString(SharedPreferencesConstants.authToken);
@@ -24,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
+  @PostConstruct(preResolve: true)
   void login(String username, String password) async {
     emit(LoginLoading());
 

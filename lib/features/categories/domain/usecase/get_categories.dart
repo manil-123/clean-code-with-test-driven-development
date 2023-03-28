@@ -5,7 +5,7 @@ import 'package:ecom_clean_code/features/categories/domain/entity/category.dart'
 import 'package:ecom_clean_code/features/categories/domain/repository/category_repository.dart';
 import 'package:injectable/injectable.dart';
 
-// @LazySingleton()
+@LazySingleton()
 class GetCategories extends Usecase<List<Category>, NoParams> {
   final CategoryRepository categoryRepository;
 
