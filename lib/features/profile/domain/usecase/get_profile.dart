@@ -5,7 +5,7 @@ import 'package:ecom_clean_code/features/profile/domain/entity/profile_entity.da
 import 'package:ecom_clean_code/features/profile/domain/repository/profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
-// @lazySingleton
+@lazySingleton
 class GetProfile extends Usecase<ProfileEntity, NoParams> {
   final ProfileRepository profileRepository;
 

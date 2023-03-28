@@ -12,7 +12,7 @@ class ApiEndpoints {
   static const loginUrl = "/auth/login";
   static const getProductsUrl = "/products";
   static const categoriesUrl = "/products/categories";
-  static const profileUrl = "/https://fakestoreapi.com/users/1";
+  static const profileUrl = "/users/1";
 }
 
 class StringConstant {
@@ -20,7 +20,7 @@ class StringConstant {
   static const loginText = 'Login';
   static const logoutText = 'Log Out';
   static const editProfileText = 'Edit Profile';
-  static const changePasswordText = 'Edit Profile';
+  static const changePasswordText = 'Change Password';
 }
 
 class SharedPreferencesConstants {

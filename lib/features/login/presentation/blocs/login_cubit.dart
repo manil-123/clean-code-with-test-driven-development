@@ -25,7 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  @PostConstruct(preResolve: true)
+  // @PostConstruct(preResolve: true)
   void login(String username, String password) async {
     emit(LoginLoading());
 
