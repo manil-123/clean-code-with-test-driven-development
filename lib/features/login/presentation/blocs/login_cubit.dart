@@ -1,6 +1,8 @@
+import 'package:ecom_clean_code/app/database/profile_dao.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/features/login/domain/entities/login_entity.dart';
 import 'package:ecom_clean_code/features/login/domain/usecase/login_user.dart';
+import 'package:ecom_clean_code/injection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -51,5 +53,6 @@ class LoginCubit extends Cubit<LoginState> {
 
   void logOut() {
     sharedPreferences.clear();
+    getIt<ProfileDao>().clear();
   }
 }

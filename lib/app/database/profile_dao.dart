@@ -13,4 +13,14 @@ class ProfileDao {
     final box = await _profileBox;
     box.put(_profileInfoKey, profileDataModel);
   }
+
+  Future<ProfileDataModel?> getProfileInfo() async {
+    final box = await _profileBox;
+    return box.get(_profileInfoKey);
+  }
+
+  Future<void> clear() async {
+    final profileInfoBox = await _profileBox;
+    await profileInfoBox.clear();
+  }
 }
