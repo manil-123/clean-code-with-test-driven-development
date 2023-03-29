@@ -3,8 +3,11 @@ import 'package:ecom_clean_code/app/router/app_router.dart';
 import 'package:ecom_clean_code/app/theme/theme_data.dart';
 import 'package:ecom_clean_code/core/constants/configs.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
+import 'package:ecom_clean_code/features/profile/data/model/profile_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'features/categories/presentation/cubit/category_cubit.dart';
 import 'features/login/presentation/blocs/login_cubit.dart';
 import 'injection.dart';
@@ -12,12 +15,25 @@ import 'injection.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
+  await initHive();
   runApp(
     DevicePreview(
       enabled: false,
       builder: (_) => MyApp(),
     ),
   );
+}
+
+Future<void> initHive() async {
+  final appDir = await getApplicationDocumentsDirectory();
+  final hivePath = '${appDir.path}/${AppConfig.appName}';
+  Hive.init(hivePath);
+
+  Hive
+    ..registerAdapter(ProfileDataModelAdapter())
+    ..registerAdapter(AddressDataModelAdapter())
+    ..registerAdapter(GeolocationDataModelAdapter())
+    ..registerAdapter(NameModelAdapter());
 }
 
 class MyApp extends StatelessWidget {
