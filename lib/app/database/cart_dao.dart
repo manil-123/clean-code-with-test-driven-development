@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecom_clean_code/core/constants/hive_config.dart';
 import 'package:ecom_clean_code/core/error/exceptions.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
@@ -14,8 +16,9 @@ class CartDao {
 
   Future<bool> addToCart(Product product) async {
     final box = await _cartListBox;
-    final cartList = box.get(_cartListKey, defaultValue: <Product>[]);
-    _productsInCart = cartList!;
+    final List<Product> cartList =
+        box.get(_cartListKey, defaultValue: <Product>[])!;
+    _productsInCart = cartList;
     if (!_productsInCart.contains(product)) {
       _productsInCart.add(product);
       box.put(_cartListKey, _productsInCart);
@@ -27,8 +30,10 @@ class CartDao {
 
   Future<bool> isInCart(Product product) async {
     final box = await _cartListBox;
-    final cartList = box.get(_cartListKey, defaultValue: <Product>[]);
+    final List<Product> cartList =
+        box.get(_cartListKey, defaultValue: <Product>[])!;
     _productsInCart = cartList!;
+    log(_productsInCart.toList().toString());
     if (_productsInCart.contains(product)) {
       return true;
     } else {

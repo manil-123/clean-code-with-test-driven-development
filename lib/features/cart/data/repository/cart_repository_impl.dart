@@ -27,7 +27,7 @@ class CartRepositoryImpl implements CartRepository {
   @override
   Future<Either<Failure, bool>> isInCart(Product product) async {
     try {
-      final result = await localSource.addToCart(product);
+      final result = await localSource.checkInCart(product);
       return Right(result);
     } on CartException catch (e) {
       return Left(

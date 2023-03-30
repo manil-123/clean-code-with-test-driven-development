@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
 import 'package:ecom_clean_code/features/cart/presentation/cubit/add_to_cart_cubit.dart';
+import 'package:ecom_clean_code/features/cart/presentation/cubit/check_cart_cubit.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
 import 'package:ecom_clean_code/injection.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +18,15 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<AddToCartCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<AddToCartCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<CheckCartCubit>(),
+        ),
+      ],
       child: ProductDetailContentScreen(product: product),
     );
   }
@@ -41,6 +51,7 @@ class _ProductDetailContentScreenState
   void initState() {
     super.initState();
     _initScrollController();
+    context.read<CheckCartCubit>().checkInCart(widget.product);
   }
 
   void _initScrollController() {
@@ -179,38 +190,44 @@ class _ProductDetailContentScreenState
           SizedBox(
             height: 24.0,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Buy'),
-                ),
-              ),
-              SizedBox(
-                width: 16.0,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 14.0),
+          BlocBuilder<CheckCartCubit, CheckCartState>(
+            builder: (context, checkCartState) {
+              log(checkCartState.toString());
+
+              return Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Buy'),
                     ),
                   ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text('Add to cart'),
-                      SizedBox(
-                        width: 2.0,
-                      ),
-                      Icon(Icons.shopping_cart)
-                    ],
+                  SizedBox(
+                    width: 16.0,
                   ),
-                ),
-              ),
-            ],
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(vertical: 14.0),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text('Add to cart'),
+                          SizedBox(
+                            width: 2.0,
+                          ),
+                          Icon(Icons.shopping_cart)
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           )
         ],
       ),

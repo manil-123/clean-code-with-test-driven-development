@@ -1,4 +1,3 @@
-import 'package:ecom_clean_code/app/database/cart_dao.dart';
 import 'package:ecom_clean_code/features/cart/domain/usecase/add_to_cart.dart';
 import 'package:ecom_clean_code/features/cart/domain/usecase/check_in_cart.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';

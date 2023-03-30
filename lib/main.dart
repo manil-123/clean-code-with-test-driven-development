@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:ecom_clean_code/app/router/app_router.dart';
 import 'package:ecom_clean_code/app/theme/theme_data.dart';
 import 'package:ecom_clean_code/core/constants/configs.dart';
-import 'package:ecom_clean_code/features/home/data/model/product_data_model.dart';
+import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
 import 'package:ecom_clean_code/features/home/presentation/cubit/product_cubit_cubit.dart';
 import 'package:ecom_clean_code/features/profile/data/model/profile_data_model.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +35,8 @@ Future<void> initHive() async {
     ..registerAdapter(AddressDataModelAdapter())
     ..registerAdapter(GeolocationDataModelAdapter())
     ..registerAdapter(NameModelAdapter())
-    ..registerAdapter(ProductDataModelAdapter())
-    ..registerAdapter(RatingDataModelAdapter());
+    ..registerAdapter(ProductAdapter())
+    ..registerAdapter(RatingAdapter());
 }
 
 class MyApp extends StatelessWidget {
