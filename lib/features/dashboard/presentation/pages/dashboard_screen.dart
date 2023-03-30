@@ -51,9 +51,9 @@ class _DashboardScreenState extends State<DashboardScreen>
             BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(4.0),
-                  child: Icon(Icons.inventory),
+                  child: Icon(Icons.shopping_cart),
                 ),
-                label: 'Products'),
+                label: 'Cart'),
             BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(4.0),

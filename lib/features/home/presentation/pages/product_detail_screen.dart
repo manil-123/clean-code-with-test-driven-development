@@ -1,19 +1,38 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
+import 'package:ecom_clean_code/features/cart/presentation/cubit/add_to_cart_cubit.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_clean_code/injection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class ProductDetailScreen extends StatefulWidget {
+class ProductDetailScreen extends StatelessWidget {
   final Product product;
+
   const ProductDetailScreen({super.key, required this.product});
 
   @override
-  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<AddToCartCubit>(),
+      child: ProductDetailContentScreen(product: product),
+    );
+  }
 }
 
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
+class ProductDetailContentScreen extends StatefulWidget {
+  final Product product;
+  const ProductDetailContentScreen({super.key, required this.product});
+
+  @override
+  State<ProductDetailContentScreen> createState() =>
+      _ProductDetailContentScreenState();
+}
+
+class _ProductDetailContentScreenState
+    extends State<ProductDetailContentScreen> {
   final double appBarExtendedHeight = 350;
   ScrollController? _scrollController;
   Color _appBarColor = Colors.white;

@@ -1,57 +1,49 @@
-import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
+import 'package:ecom_clean_code/core/constants/hive_config.dart';
+import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class ProductDataModel extends Product {
+part 'product_data_model.g.dart';
+
+@JsonSerializable()
+@HiveType(typeId: HiveTypeIds.productDataModel)
+class ProductDataModel {
+  @HiveField(0)
+  final int? id;
+  @HiveField(1)
+  final String? title;
+  @HiveField(2)
+  final num? price;
+  @HiveField(3)
+  final String? description;
+  @HiveField(4)
+  final String? category;
+  @HiveField(5)
+  final String? image;
+  @HiveField(6)
+  final RatingDataModel? rating;
+
   const ProductDataModel(
-      {id, title, price, description, category, image, rating})
-      : super(
-            id: id,
-            title: title,
-            price: price,
-            description: description,
-            category: category,
-            image: image,
-            rating: rating);
+      {this.id,
+      this.title,
+      this.price,
+      this.description,
+      this.category,
+      this.image,
+      this.rating});
 
-  factory ProductDataModel.fromJson(Map<String, dynamic> json) {
-    return ProductDataModel(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      price: json['price'] as num,
-      description: json['description'] as String,
-      category: json['category'] as String,
-      image: json['image'] as String,
-      rating: json['rating'] != null
-          ? RatingDataModel.fromJson(json['rating'])
-          : null,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['price'] = price;
-    data['description'] = description;
-    data['category'] = category;
-    data['image'] = image;
-    if (rating != null) {
-      data['rating'] = rating!;
-    }
-    return data;
-  }
+  factory ProductDataModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductDataModelFromJson(json);
 }
 
-class RatingDataModel extends Rating {
-  const RatingDataModel({rate, count}) : super(rate: rate, count: count);
+@JsonSerializable()
+@HiveType(typeId: HiveTypeIds.ratingDataModel)
+class RatingDataModel {
+  @HiveField(0)
+  final num? rate;
+  @HiveField(1)
+  final int? count;
+  const RatingDataModel({this.rate, this.count});
 
-  factory RatingDataModel.fromJson(Map<String, dynamic> json) {
-    return RatingDataModel(rate: json['rate'] as num, count: json['count']);
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['rate'] = rate;
-    data['count'] = count;
-    return data;
-  }
+  factory RatingDataModel.fromJson(Map<String, dynamic> json) =>
+      _$RatingDataModelFromJson(json);
 }

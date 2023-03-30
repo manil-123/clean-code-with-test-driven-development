@@ -22,3 +22,8 @@ class FetchDataException implements Exception {
   String exceptionMessage = 'Error during communication';
   FetchDataException(this.exceptionMessage);
 }
+
+class CartException implements Exception {
+  String exceptionMessage;
+  CartException(this.exceptionMessage);
+}
