@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
+import 'package:ecom_clean_code/core/constants/routes.dart';
 import 'package:ecom_clean_code/features/categories/domain/entity/category.dart';
 import 'package:ecom_clean_code/features/categories/presentation/cubit/category_cubit.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
@@ -69,88 +70,98 @@ class _ProductListScreenState extends State<ProductListScreen> {
               itemCount: widget.productsList.length,
               itemBuilder: (context, index) {
                 final item = widget.productsList[index];
-                return Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.primaryDark,
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      Routes.productDetailPageRoute,
+                      arguments: item,
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.primaryDark,
+                        ),
+                        borderRadius: BorderRadius.circular(4.0),
                       ),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          width: double.infinity,
-                          padding: EdgeInsets.all(6.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 200,
+                            width: double.infinity,
+                            padding: EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: item.image!,
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                          child: CachedNetworkImage(
-                            imageUrl: item.image!,
-                            fit: BoxFit.contain,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Text(
+                                        item.title!,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        '\$${item.price!}',
+                                        textAlign: TextAlign.right,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16.0,
+                                ),
+                                Row(
+                                  children: [
+                                    RatingBarIndicator(
+                                      rating: double.parse(
+                                        item.rating!.rate!.toString(),
+                                      ),
+                                      itemCount: 5,
+                                      itemSize: 20.0,
+                                      physics: BouncingScrollPhysics(),
+                                      itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8.0,
+                                    ),
+                                    Text('(${item.rating!.count!})'),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Text(
-                                      item.title!,
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                      style:
-                                          Theme.of(context).textTheme.headline4,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Text(
-                                      '\$${item.price!}',
-                                      textAlign: TextAlign.right,
-                                      style:
-                                          Theme.of(context).textTheme.headline4,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 16.0,
-                              ),
-                              Row(
-                                children: [
-                                  RatingBarIndicator(
-                                    rating: double.parse(
-                                      item.rating!.rate!.toString(),
-                                    ),
-                                    itemCount: 5,
-                                    itemSize: 20.0,
-                                    physics: BouncingScrollPhysics(),
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 8.0,
-                                  ),
-                                  Text('(${item.rating!.count!})'),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
