@@ -8,36 +8,21 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton()
 class CartDao {
-  static const int _cartListKey = 0;
-  final Future<Box<List<Product>>> _cartListBox =
+  final Future<Box<Product>> _cartListBox =
       Hive.openBox(HiveBoxNames.cartListBox);
-
-  List<Product> _productsInCart = [];
 
   Future<bool> addToCart(Product product) async {
     final box = await _cartListBox;
-    final List<Product> cartList =
-        box.get(_cartListKey, defaultValue: <Product>[])!;
-    _productsInCart = cartList;
-    if (!_productsInCart.contains(product)) {
-      _productsInCart.add(product);
-      box.put(_cartListKey, _productsInCart);
+    try {
+      box.put(product.id, product);
       return true;
-    } else {
-      throw CartException('Already in cart');
+    } catch (e) {
+      throw CartException('Add to cart exception');
     }
   }
 
-  Future<bool> isInCart(Product product) async {
+  Future<bool> contains(Product product) async {
     final box = await _cartListBox;
-    final List<Product> cartList =
-        box.get(_cartListKey, defaultValue: <Product>[])!;
-    _productsInCart = cartList!;
-    log(_productsInCart.toList().toString());
-    if (_productsInCart.contains(product)) {
-      return true;
-    } else {
-      return false;
-    }
+    return box.containsKey(product.id);
   }
 }
