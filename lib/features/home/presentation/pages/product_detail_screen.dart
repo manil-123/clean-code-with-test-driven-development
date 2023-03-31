@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
 import 'package:ecom_clean_code/core/constants/constants.dart';
+import 'package:ecom_clean_code/core/widgets/custom_circular_progress_indicator.dart';
 import 'package:ecom_clean_code/features/cart/presentation/cubit/add_to_cart_cubit.dart';
 import 'package:ecom_clean_code/features/cart/presentation/cubit/check_cart_cubit.dart';
 import 'package:ecom_clean_code/features/home/domain/entities/product_entity.dart';
@@ -194,6 +195,10 @@ class _ProductDetailContentScreenState
             builder: (context, checkCartState) {
               log(checkCartState.toString());
 
+              if (checkCartState is CheckCartLoading) {
+                return CustomCircularProgressIndicator();
+              }
+
               return Row(
                 children: [
                   Expanded(
@@ -205,25 +210,49 @@ class _ProductDetailContentScreenState
                   SizedBox(
                     width: 16.0,
                   ),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 14.0),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text('Add to cart'),
-                          SizedBox(
-                            width: 2.0,
+                  BlocBuilder<AddToCartCubit, AddToCartState>(
+                    builder: (context, addToCartState) {
+                      log(addToCartState.toString());
+                      return Expanded(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(vertical: 14.0),
+                            ),
                           ),
-                          Icon(Icons.shopping_cart)
-                        ],
-                      ),
-                    ),
+                          onPressed: (checkCartState is CheckCartLoaded &&
+                                  checkCartState.isInCart)
+                              ? null
+                              : () {
+                                  context
+                                      .read<AddToCartCubit>()
+                                      .addToCart(widget.product);
+                                  context
+                                      .read<CheckCartCubit>()
+                                      .checkInCart(widget.product);
+                                },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              (addToCartState is AddToCartLoading)
+                                  ? SizedBox(
+                                      height: 30,
+                                      width: 30,
+                                      child: CustomCircularProgressIndicator(),
+                                    )
+                                  : (checkCartState is CheckCartLoaded &&
+                                          checkCartState.isInCart)
+                                      ? Text('In Cart')
+                                      : Text('Add to cart'),
+                              SizedBox(
+                                width: 2.0,
+                              ),
+                              Icon(Icons.shopping_cart)
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               );

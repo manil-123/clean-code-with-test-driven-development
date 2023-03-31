@@ -18,6 +18,9 @@ class AddToCartCubit extends Cubit<AddToCartState> {
     emit(
       AddToCartLoading(),
     );
+    await Future.delayed(
+      const Duration(milliseconds: 300),
+    );
     final response = await addToCartUsecase.call(
       CartParams(product),
     );
