@@ -25,4 +25,10 @@ class CartDao {
     final box = await _cartListBox;
     return box.containsKey(product.id);
   }
+
+  Future<List<Product>> getCartList() async {
+    final box = await _cartListBox;
+
+    return box.values.toList();
+  }
 }

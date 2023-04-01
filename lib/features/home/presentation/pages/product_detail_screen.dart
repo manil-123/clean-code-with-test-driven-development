@@ -210,7 +210,14 @@ class _ProductDetailContentScreenState
                   SizedBox(
                     width: 16.0,
                   ),
-                  BlocBuilder<AddToCartCubit, AddToCartState>(
+                  BlocConsumer<AddToCartCubit, AddToCartState>(
+                    listener: (context, state) {
+                      if (state is AddToCartSuccess) {
+                        context
+                            .read<CheckCartCubit>()
+                            .checkInCart(widget.product);
+                      }
+                    },
                     builder: (context, addToCartState) {
                       log(addToCartState.toString());
                       return Expanded(
@@ -227,9 +234,6 @@ class _ProductDetailContentScreenState
                                   context
                                       .read<AddToCartCubit>()
                                       .addToCart(widget.product);
-                                  context
-                                      .read<CheckCartCubit>()
-                                      .checkInCart(widget.product);
                                 },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

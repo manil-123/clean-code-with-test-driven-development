@@ -20,4 +20,8 @@ class CartLocalSource {
   Future<bool> checkInCart(Product product) async {
     return await cartDao.contains(product);
   }
+
+  Future<List<Product>> getProductsList() async {
+    return await cartDao.getCartList();
+  }
 }

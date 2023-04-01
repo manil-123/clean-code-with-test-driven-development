@@ -6,4 +6,6 @@ abstract class CartRepository {
   Future<Either<Failure, bool>> addToCart(Product product);
 
   Future<Either<Failure, bool>> isInCart(Product product);
+
+  Future<Either<Failure, List<Product>>> getProductsList();
 }

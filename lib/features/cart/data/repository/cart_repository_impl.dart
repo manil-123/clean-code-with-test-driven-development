@@ -35,4 +35,16 @@ class CartRepositoryImpl implements CartRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<Product>>> getProductsList() async {
+    try {
+      final result = await localSource.getProductsList();
+      return Right(result);
+    } on CartException catch (e) {
+      return Left(
+        Failure(e.exceptionMessage),
+      );
+    }
+  }
 }

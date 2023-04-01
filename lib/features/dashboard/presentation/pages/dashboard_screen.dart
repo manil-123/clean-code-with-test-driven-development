@@ -1,4 +1,5 @@
 import 'package:ecom_clean_code/app/theme/app_colors.dart';
+import 'package:ecom_clean_code/features/cart/presentation/pages/cart_screen.dart';
 import 'package:ecom_clean_code/features/home/presentation/pages/home_screen.dart';
 import 'package:ecom_clean_code/features/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen>
 
   final _screensList = const [
     HomeScreen(),
-    HomeScreen(),
+    CartScreen(),
     ProfileScreen(),
   ];
   @override
